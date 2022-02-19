@@ -1,4 +1,3 @@
-const { Console } = require('console');
 const express = require('express');
 const fs = require("fs");
 
@@ -13,11 +12,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(_dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.get("/notes", function (req, res) {
-    res.sendFile(path.join(_dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
 app.get("/api/notes", (req,res) => {
@@ -43,7 +42,7 @@ app.post("/api/notes", (req, res) => {
             console.log("new note has been saved");
             
         });
-        res.sendFile(path.join(_dirname, "/public/notes.html"));
+        res.sendFile(path.join(__dirname, "/public/notes.html"));
     })
 });
 
@@ -59,11 +58,8 @@ app.delete("/api/notes/:id", (req, res) => {
             console.log("Note has been deleted");
             
         });
-        res.sendFile(path.join(_dirname, "/public/notes.html"));
+        res.sendFile(path.join(__dirname, "/public/notes.html"));
     })
 })
 
-app.listen(PORT, () =>{
-    console.log (`API server now on port ${PORT}!`);
-});
-
+app.listen(PORT, () => console.log(`API server now on port ${PORT}!`))
